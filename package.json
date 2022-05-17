@@ -1,0 +1,19 @@
+{
+  "name": "qacinemas-backend",
+  "version": "1.0.0",
+  "description": "Back-End for QA Cinemas Front-End",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayedsakkaf/QACinemas-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sayedsakkaf/QACinemas-Backend/issues"
+  },
+  "homepage": "https://github.com/sayedsakkaf/QACinemas-Backend#readme"
+}
