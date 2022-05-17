@@ -4,6 +4,7 @@
   "description": "Back-End for QA Cinemas Front-End",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sayedsakkaf/QACinemas-Backend/issues"
   },
-  "homepage": "https://github.com/sayedsakkaf/QACinemas-Backend#readme"
+  "homepage": "https://github.com/sayedsakkaf/QACinemas-Backend#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
