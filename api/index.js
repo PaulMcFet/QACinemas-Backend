@@ -5,7 +5,7 @@ const HttpError = require('./v1/errors/http-error');
 const MovieNotFoundError = require('./v1/errors/movie-not-found-error');
 const movieRouter = require('./v1/route/movie-router');
 
-const DB_URI = proces.env.DB_URI || "mongodb://127.0.0.1:27017/qa-cinemas";
+const DB_URI = process.env.DB_URI || "mongodb://127.0.0.1:27017/qa-cinemas";
 const PORT = process.env.PORT || 3000;
 const app = express();
 
