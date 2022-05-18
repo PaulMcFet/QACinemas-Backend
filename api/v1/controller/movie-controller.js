@@ -1,5 +1,4 @@
 const MovieNotFoundError = require('../errors/movie-not-found-error.js');
-const Movie = require('../models/movies.js');
 const Movie = require('../v1/models/movies.js');
 
 const Movie = [new Movie({ title: "Fast and Furious", description:"Cars driving fast and dangerous", genre:"Action", releaseDate:"2001", runtime:"106 Minutes"})];
