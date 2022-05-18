@@ -1,5 +1,5 @@
 const MovieNotFoundError = require('../errors/movie-not-found-error.js');
-const Movie = require('../model/movie.js');
+const Movie = require('../model/movies.js');
 
 module.exports = {
 
