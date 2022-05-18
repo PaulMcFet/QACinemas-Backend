@@ -56,7 +56,7 @@ async function main() {
     const db = mongoose.connection;
 
     db.on('error', console.error.bind(console, 'MongoDB connection error'));
-    db.on('connection', conosle.log.bind(console, 'MongoDB connection successful'));
+    db.on('connection', console.log.bind(console, 'MongoDB connection successful'));
 
     // Server start up
     const server = app.listen(PORT, function() {
