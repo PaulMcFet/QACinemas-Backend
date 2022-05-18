@@ -4,7 +4,7 @@
   "description": "Back-End for QA Cinemas Front-End",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "set NODE_ENV=PROUDCTION&& node  ./api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
