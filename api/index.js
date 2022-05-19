@@ -3,7 +3,9 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const HttpError = require('./v1/errors/http-error');
 const MovieNotFoundError = require('./v1/errors/movie-not-found-error');
+const BookingNotFoundError = require('./v1/errors/booking-not-found-error');
 const movieRouter = require('./v1/route/movie-router');
+const bookingRouter = require('./v1/route/booking-router');
 
 const DB_URI = process.env.DB_URI || "mongodb://127.0.0.1:27017/qa-cinemas";
 const PORT = process.env.PORT || 3000;
@@ -28,6 +30,7 @@ app.use(express.static("public"));
 
 // Router level middleware
 app.use("/movie", movieRouter);
+app.use("/booking", bookingRouter);
 
 
 // Error handler middleware
