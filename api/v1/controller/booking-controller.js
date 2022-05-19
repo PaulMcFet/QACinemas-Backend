@@ -40,4 +40,14 @@ update: async (req, res, next) => {
     }
     next(new BookingNotFoundError(id));
 },
+delete: async (req, res, next) => {
+    const filter = { _id: req.params.id };
+    const booking = await Booking.findOneAndDelete(filter);
+    if (booking) {
+        return res.status(200).json(booking);
+    }
+    next(new BookingNotFoundError(id));
+},
+
+
 }
