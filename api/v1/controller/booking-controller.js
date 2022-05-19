@@ -1,4 +1,4 @@
-//booking error
+const BookingNotFoundError = require('../errors/booking-not-found-error.js');
 const Booking = require('../models/bookings');
 
 module.exports = {
