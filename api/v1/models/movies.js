@@ -8,6 +8,7 @@ const movieSchema = new Schema ({
     runtime: String,
     releaseYear: Number,
     cast: String
+    
 
 });
 
