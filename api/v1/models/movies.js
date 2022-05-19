@@ -5,9 +5,10 @@ const movieSchema = new Schema ({
     title: String,
     description: String,
     genre: String,
-    releaseDate: Date,
-    runtime: String
-    
+    runtime: String,
+    releaseYear: Number,
+    cast: String
+
 });
 
 const Movie = mongoose.model('Movie', movieSchema)
