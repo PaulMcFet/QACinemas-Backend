@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const screeningSchema = new Schema({
-    time: String,
     date: Date,
     screenNumber: Number,
     numOfSeats: Number,
