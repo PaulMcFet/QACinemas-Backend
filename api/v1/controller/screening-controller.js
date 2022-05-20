@@ -3,12 +3,12 @@ const Screening = require('../models/screening.js');
 
 module.exports = {
 
-readAll: async (req, res, next) => {
+getAll: async (req, res, next) => {
     const screenings = await Screening.find({});
     res.status(200).json(screenings);
 },
 
-readById: async (req, res, next) => {
+getById: async (req, res, next) => {
     const id = req.params.id;
     const screening = await Screening.findById(id);
     if (screening) {
