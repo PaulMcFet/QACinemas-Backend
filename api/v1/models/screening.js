@@ -16,6 +16,6 @@ const screeningSchema = new Schema({
     }
 })
 
-const Screening = mongoose.model('Screening', viewingSchema);
+const Screening = mongoose.model('Screening', screeningSchema);
 
 module.exports = Screening;
