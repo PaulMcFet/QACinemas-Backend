@@ -12,6 +12,11 @@ lastName: {
     type: String,
     required: true,
     trim: true
+},
+
+admin: {
+    type: Boolean,
+    default: false
 }
 
 
