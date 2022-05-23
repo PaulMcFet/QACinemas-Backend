@@ -4,13 +4,13 @@ const Screening = require('../models/screening.js');
 module.exports = {
 
 getAll: async (req, res, next) => {
-    const screenings = await Screening.find({}).populate('movie', 'title');
+    const screenings = await Screening.find({}).populate('movie');
     res.status(200).json(screenings);
 },
 
 getById: async (req, res, next) => {
     const id = req.params.id;
-    const screening = await Screening.findById(id).populate('movie', 'title');
+    const screening = await Screening.findById(id).populate('movie');
     if (screening) {
         res.status(200).json(screening);
         return; 
