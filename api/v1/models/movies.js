@@ -7,8 +7,11 @@ const movieSchema = new Schema ({
     genre: String,
     runtime: String,
     releaseYear: Number,
-    cast: String
-    
+    cast: String,
+    poster:  {
+        type: Schema.Types.ObjectId,
+    ref: 'Image',
+    }  
 
 });
 
