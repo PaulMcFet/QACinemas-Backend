@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const HttpError = require('./v1/errors/http-error');
 const MovieNotFoundError = require('./v1/errors/movie-not-found-error');
