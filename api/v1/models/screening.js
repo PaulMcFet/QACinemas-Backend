@@ -9,10 +9,7 @@ const screeningSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Movie',
     },
-    bookings: {
-        type: Schema.Types.ObjectId,
-        ref: 'Booking'
-    }
+
 })
 
 const Screening = mongoose.model('Screening', screeningSchema);
