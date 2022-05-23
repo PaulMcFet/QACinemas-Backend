@@ -12,7 +12,7 @@ getMovies: async (req, res, next) => {
 
 getMovieById: async (req, res, next) => {
     const id = req.params.id;
-    const movie = await Movie.findById(id).populate('image', 'image');
+    const movie = await Movie.findById(id).populate('poster', 'image');
     if (movie) {
         res.status(200).json(movie);
         return; 
