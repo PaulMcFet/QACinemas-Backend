@@ -12,6 +12,7 @@ const bookingRouter = require('./v1/route/booking-router');
 const screeningRouter = require('./v1/route/screening-router')
 const userRouter = require('./v1/route/user-router');
 const emailRouter = require('./v1/route/email-router')
+const cors = require('cors');
 
 const DB_URI = process.env.DB_URI || "mongodb://127.0.0.1:27017/qa-cinemas";
 const PORT = process.env.PORT || 3000;
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV === "PRODUCTION") {
 
 
 // Built in middleware
+app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static("public"));
