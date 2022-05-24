@@ -20,7 +20,7 @@ router.post('/register', async (request, response, next) => {
         const users = new User({ ...request.body });
 
         const isUser = await User.findOne({ $or: [
-            { email: User.email }
+            { email: user.email }
         ]});
 
         if (isUser) {
