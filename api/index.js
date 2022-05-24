@@ -7,11 +7,14 @@ const MovieNotFoundError = require('./v1/errors/movie-not-found-error');
 const BookingNotFoundError = require('./v1/errors/booking-not-found-error');
 const ScreeningNotFoundError = require('./v1/errors/screening-not-found-error');
 const UserNotFoundError = require('./v1/errors/user-not-found-error');
+const authenticationRouter = require('./v1/route/authentication-router')
+const roleRouter = require('./v1/route/role-router');
 const movieRouter = require('./v1/route/movie-router');
 const bookingRouter = require('./v1/route/booking-router');
 const screeningRouter = require('./v1/route/screening-router')
 const userRouter = require('./v1/route/user-router');
 const emailRouter = require('./v1/route/email-router')
+const cors = require('cors');
 
 const DB_URI = process.env.DB_URI || "mongodb://127.0.0.1:27017/qa-cinemas";
 const PORT = process.env.PORT || 3000;
@@ -29,12 +32,15 @@ if (process.env.NODE_ENV === "PRODUCTION") {
 
 
 // Built in middleware
+app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static("public"));
 
 
 // Router level middleware
+app.use(authenticationRouter);
+app.use("/role", roleRouter);
 app.use("/movie", movieRouter);
 app.use("/email", emailRouter);
 app.use("/booking", bookingRouter);

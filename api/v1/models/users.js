@@ -29,7 +29,7 @@ password: {
 
 },
 
-admin: {
+role: {
     type: String,
     enum: ['ADMIN', 'MEMBER'],
     default: 'MEMBER'
