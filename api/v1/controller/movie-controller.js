@@ -7,7 +7,16 @@ const movies = [new Movie({
     genre: "Adventure", 
     runtime: "1h 55m",
     releaseYear: 2016,
-    cast: "Benedict Cumberbatch, "
+    cast: `<a href="https://www.imdb.com/name/nm1212722/"><u>Benedict Cumberbatch</u></a>`
+
+}), new Movie({
+    title: "Ghostbusters",
+    description: "When Peter Venkman, Raymond Stantz and Egon Spengler lose their jobs as scientists, they start an establishment called Ghostbusters to fight the evil ghosts lurking in New York City.",
+    genre: "Comedy/ Fantasy", 
+    runtime: "1h 45m",
+    releaseYear: 1984,
+    cast: "Bill Murray"  
+
 }), new Movie({
     title: "Ghostbusters",
     description: "When Peter Venkman, Raymond Stantz and Egon Spengler lose their jobs as scientists, they start an establishment called Ghostbusters to fight the evil ghosts lurking in New York City.",
