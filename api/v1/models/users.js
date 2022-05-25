@@ -3,6 +3,18 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema ({
+
+username: {
+    type: String,
+    default: null,
+    required: [true, 'Username must be a minimum of 6 characters in length'],
+    minlength: 6,
+    maxlength: 32,
+    trim: true,
+    unique: true
+},
+
+
 firstName: {
     type: String,
     required: true,
@@ -25,6 +37,7 @@ password: {
     type: String, 
     required: true,
     trim: true,
+    minlength: 6,
     select: false
 
 },
