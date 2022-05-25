@@ -1,24 +1,23 @@
 const MovieNotFoundError = require('../errors/movie-not-found-error.js');
 const Movie = require('../models/movies.js');
 
-const movie1 = new Movie({ 
+const movies = [new Movie({ 
     title: "Dr Strange",
     description: "In an accident, Stephen Strange, a famous neurosurgeon, loses the ability to use his hands. He goes to visit the mysterious Ancient One to heal himself and becomes a great sorcerer under her tutelage.",
     genre: "Adventure", 
     runtime: "1h 55m",
     releaseYear: 2016,
     cast: "Benedict Cumberbatch, "
-})
-const movie2 = new Movie({
+}), new Movie({
     title: "Ghostbusters",
     description: "When Peter Venkman, Raymond Stantz and Egon Spengler lose their jobs as scientists, they start an establishment called Ghostbusters to fight the evil ghosts lurking in New York City.",
     genre: "Comedy/ Fantasy", 
     runtime: "1h 45m",
     releaseYear: 1984,
     cast: "Bill Murray"
-})
-movie1.save();
-movie2.save();
+})]
+// movies[1];
+Movie.bulkSave(movies);
 
 module.exports = {
 
