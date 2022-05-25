@@ -1,8 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema ({
+
+username: {
+    type: String,
+    default: null,
+    required: [true, 'Username must be a minimum of 6 characters in length'],
+    minlength: 6,
+    maxlength: 32,
+    trim: true,
+    unique: true
+},
+
+
 firstName: {
     type: String,
     required: true,
@@ -24,26 +36,26 @@ email: {
 password: {
     type: String, 
     required: true,
-    trim: true
+    trim: true,
+    minlength: 6,
+    select: false
 
 },
 
-admin: {
-    type: Boolean,
-    default: false
+role: {
+    type: String,
+    enum: ['ADMIN', 'MEMBER'],
+    default: 'MEMBER'
 }
 
 });
 
-userSchema.pre ('save', async function (next){
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(this.password, salt);
-        this.password = hashedPassword;
-        next();
-    } catch (error) {
-        next(error)
+userSchema.pre ('save', async function (next) {
+    if (this.password && this.isModified('password')) {
+        this.password = await bcrypt.hash(this.password, 8);
     }
+    next();
+
 })
 
 const User = mongoose.model('User', userSchema)

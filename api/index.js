@@ -7,6 +7,8 @@ const MovieNotFoundError = require('./v1/errors/movie-not-found-error');
 const BookingNotFoundError = require('./v1/errors/booking-not-found-error');
 const ScreeningNotFoundError = require('./v1/errors/screening-not-found-error');
 const UserNotFoundError = require('./v1/errors/user-not-found-error');
+const authenticationRouter = require('./v1/route/authentication-router')
+const roleRouter = require('./v1/route/role-router');
 const movieRouter = require('./v1/route/movie-router');
 const bookingRouter = require('./v1/route/booking-router');
 const screeningRouter = require('./v1/route/screening-router')
@@ -37,6 +39,8 @@ app.use(express.static("public"));
 
 
 // Router level middleware
+app.use(authenticationRouter);
+app.use("/role", roleRouter);
 app.use("/movie", movieRouter);
 app.use("/email", emailRouter);
 app.use("/booking", bookingRouter);
