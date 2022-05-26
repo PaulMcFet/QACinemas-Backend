@@ -7,12 +7,7 @@ const { authenticationMiddleware } = require('../config/JwtUtils');
 const expiration = jwtUtils.JWT_TIMEOUT;
 
 
-router.post('/refresh', authenticationMiddleware, async (request, response, next) => {
-    const user = request.user;
-    const token = jwtUtils.generateAccessToken(user.username, user.role);
-    response.setHeader('Authorization', token);
-    return response.status(200).json({ token, expiration, user });
-});
+router.post('/refresh', authenticationMiddleware, jwtUtils.refreshAccessTokenMiddleware);
 
 
 router.post('/register', async (request, response, next) => {
@@ -45,14 +40,19 @@ router.post('/login', async (request, response, next) => {
             return response.status(400).send("Incomplete login fields.");
         }
 
-        // ensure to select the pw from the db for the comparison
         const user = await User.findOne({ username }).select('+password');
 
         if (user) {
             if (await bcrypt.compare(password, user.password)) {
                 user.password = undefined;
                 const token = jwtUtils.generateAccessToken(user.username, user.role);
-                response.setHeader('Authorization', token);
+                response.cookie('refreshToken', jwtUtils.generateRefreshToken(user.username, user.role), {
+                    httpOnly: true, 
+                    sameSite: process.env.NODE_ENV === 'PRODUCTION' ? 'none' : 'lax', 
+                    secure: process.env.NODE_ENV === 'PRODUCTION' ? true : false, 
+
+                    maxAge: 1000 * 60 * 60 * 24 
+                });
 
                 return response.status(200).json({ token, expiration, user });
             }
