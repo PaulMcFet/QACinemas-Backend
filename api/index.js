@@ -30,9 +30,13 @@ if (process.env.NODE_ENV === "PRODUCTION") {
     app.use(morgan('dev'));
 }
 
+const corsConfig = {
+    credentials: true,
+    origin: true,
+}
 
 // Built in middleware
-app.use(cors("*"));
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static("public"));

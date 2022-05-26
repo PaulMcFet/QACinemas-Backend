@@ -6,10 +6,15 @@ const jwtUtils = require('../config/JwtUtils');
 const { authenticationMiddleware } = require('../config/JwtUtils');
 const expiration = jwtUtils.JWT_TIMEOUT;
 
-
+/**
+ * Allows for a JWT to be refreshed if you are currently hold a valid JWT and 
+ * a refresh token cookie.
+ */
 router.post('/refresh', authenticationMiddleware, jwtUtils.refreshAccessTokenMiddleware);
 
-
+/** 
+* This route creates a new user from the passed in request body or returns an appropriate error.
+*/
 router.post('/register', async (request, response, next) => {
     try {
         const user = new User({ ...request.body });
@@ -40,15 +45,18 @@ router.post('/login', async (request, response, next) => {
             return response.status(400).send("Incomplete login fields.");
         }
 
+        
         const user = await User.findOne({ username }).select('+password');
 
         if (user) {
             if (await bcrypt.compare(password, user.password)) {
                 user.password = undefined;
                 const token = jwtUtils.generateAccessToken(user.username, user.role);
+                
                 response.cookie('refreshToken', jwtUtils.generateRefreshToken(user.username, user.role), {
                     httpOnly: true, 
                     sameSite: process.env.NODE_ENV === 'PRODUCTION' ? 'none' : 'lax', 
+                    
                     secure: process.env.NODE_ENV === 'PRODUCTION' ? true : false, 
 
                     maxAge: 1000 * 60 * 60 * 24 
